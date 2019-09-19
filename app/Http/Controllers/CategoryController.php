@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Category;
 
-class CategoryController extends Controller
+class AddCategoryController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categorys = Category::paginate(5);
+
+        return view('system-mgmt/category/index', ['categorys' => $categorys]);
     }
 
     /**
@@ -23,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('system-mgmt/category/create');
     }
 
     /**
@@ -34,7 +48,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateInput($request);
+         Category::create([
+            'name' => $request['name']
+           
+        ]);
+
+        return redirect()->intended('system-management/category');
     }
 
     /**
@@ -56,7 +76,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorys= Category::find($id);
+        // Redirect to country list if updating country wasn't existed
+        if ($category == null || count($category) == 0) {
+            return redirect()->intended('/system-management/category');
+        }
+
+        return view('system-mgmt/category/edit', ['categorys' => $categorys]);
     }
 
     /**
@@ -68,7 +94,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categorys = Category::findOrFail($id);
+        $input = [
+            'name' => $request['name']
+           
+        ];
+        $this->validate($request, [
+        'name' => 'required|max:60'
+        ]);
+        Category::where('id', $id)
+            ->update($input);
+        
+        return redirect()->intended('system-management/category');
     }
 
     /**
@@ -79,6 +116,44 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::where('id', $id)->delete();
+         return redirect()->intended('system-management/category');
     }
+
+    /**
+     * Search country from database base on some specific constraints
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *  @return \Illuminate\Http\Response
+     */
+    public function search(Request $request) {
+        $constraints = [
+            'name' => $request['name']
+            
+            ];
+
+       $countries = $this->doSearchingQuery($constraints);
+       return view('system-mgmt/category/index', ['categorys' => $categorys, 'searchingVals' => $constraints]);
+    }
+
+    private function doSearchingQuery($constraints) {
+        $query = Category::query();
+        $fields = array_keys($constraints);
+        $index = 0;
+        foreach ($constraints as $constraint) {
+            if ($constraint != null) {
+                $query = $query->where( $fields[$index], 'like', '%'.$constraint.'%');
+            }
+
+            $index++;
+        }
+        return $query->paginate(5);
+    }
+    private function validateInput($request) {
+        $this->validate($request, [
+        'name' => 'required|max:60|unique:addcategory'
+     
+    ]);
+    }
+
 }

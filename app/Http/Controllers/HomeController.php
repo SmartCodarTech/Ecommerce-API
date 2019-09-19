@@ -23,6 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('farmconnect/index');
+        return view('home');
     }
+    public function about()
+    {
+        return view('farmconnect/about');
+    }
+    public function contact()
+    {
+        return view('farmconnect/contact');
+    }
+
+
 }

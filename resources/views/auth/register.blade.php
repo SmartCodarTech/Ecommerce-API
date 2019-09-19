@@ -113,19 +113,7 @@
         <input type="password" name="password_confirmation" class="form-control" placeholder="Retype password">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <select type="password" class="form-control" name="role" value="{{ old('role') }}" placeholder="Employeer/Employee">
-            <option value="none">Please Select Account</option>
-                                        <option value="employeer">Employeer</option>
-                                        <option value="user">Employee</option>
-                                    </select>
-        
-        @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-      </div>
+      
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
