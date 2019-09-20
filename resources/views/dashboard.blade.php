@@ -101,7 +101,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-blue">
             <div class="inner">
-              <h3>{{DB::table('employeers')->count()}}</h3>
+              <h3>{{DB::table('farmer')->count()}}</h3>
 
               <p>Employers</p>
             </div>
@@ -115,7 +115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{DB::table('add_country')->count()}}</h3>
+              <h3>{{DB::table('customer')->count()}}</h3>
 
               <p>Countries</p>
             </div>
@@ -129,7 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{DB::table('add_course')->count()}}</h3>
+              <h3>{{DB::table('product')->count()}}</h3>
 
               <p>Courses</p>
             </div>
@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            <div class="col-lg-3 col-xs-6">
              <div class="small-box bg-blue">
             <div class="inner">
-              <h3>{{DB::table('add_shool')->count()}}</h3>
+              <h3>{{DB::table('admin')->count()}}</h3>
 
               <p>Schools</p>
             </div>
@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{DB::table('addcategory')->count()}}</h3>
+              <h3>{{DB::table('category')->count()}}</h3>
 
               <p>Category of Courses</p>
             </div>
@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{DB::table('graduate')->count()}}</h3>
+              <h3>{{DB::table('payment')->count()}}</h3>
 
               <p>Graduates </p>
             </div>
@@ -189,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{DB::table('jobs')->count()}}</h3>
+              <h3>{{DB::table('users')->count()}}</h3>
 
               <p>Vacancy&Jobs</p>
             </div>

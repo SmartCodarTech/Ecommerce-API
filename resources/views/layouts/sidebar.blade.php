@@ -45,7 +45,7 @@
             <li><a href="{{ url('system-management/employeer') }}"><i class="fa fa-suitcase"></i>Employeers</a></li>
             <li><a href="{{ url('system-management/graduate') }}"><i class="fa fa-users"></i>Job Seekers</a></li>
             <li><a href="{{ url('system-management/country') }}"><i class="fa fa-flag-o"></i>Countries</a></li>
-            <li><a href="{{ url('system-management/category') }}"><i class="fa fa-book"></i>Categories courses</a></li> <!--country--> <!--country-->
+            <li><a href="{{ url('system-management/category') }}"><i class="fa fa-book"></i>Categories</a></li> <!--country--> <!--country-->
             <li><a href="{{ url('system-management/course') }}"><i class="fa fa-book"></i>Courses</a></li> <!--country-->
             <li><a href="{{ url('system-management/schools') }}"><i class="fa fa-graduation-cap"></i>schools</a></li> <!--country-->
             
@@ -53,7 +53,7 @@
         </li>
        
         </li>
-        <li><a href="{{ route('mail-management.index')}}"><i class="fa fa-envelope"></i> <span>Mails</span></a></li>
+       
         <li><a href="{{ route('user-management.index') }}"><i class="fa fa-user"></i> <span>User management</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

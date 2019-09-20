@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Category;
 
-class AddCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -49,12 +49,13 @@ class AddCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validateInput($request);
-         Category::create([
-            'name' => $request['name']
-           
-        ]);
-
-        return redirect()->intended('system-management/category');
+        // Upload image
+        $path = $request->file('picture')->store('avatars');
+        $keys = ['name'];
+        $input = $this->createQueryInput($keys, $request);
+        $input['picture'] = $path;
+        Category::create($input);
+        return redirect()->intended('system-management/category')->with('success', 'Product Category Added successfully.');
     }
 
     /**
@@ -120,6 +121,23 @@ class AddCategoryController extends Controller
          return redirect()->intended('system-management/category');
     }
 
+    public function load($name) {
+         $path = storage_path().'/app/avatars/'.$name;
+        if (file_exists($path)) {
+            return Response::download($path);
+        }
+    }
+
+     private function createQueryInput($keys, $request) {
+        $queryInput = [];
+        for($i = 0; $i < sizeof($keys); $i++) {
+            $key = $keys[$i];
+            $queryInput[$key] = $request[$key];
+        }
+
+        return $queryInput;
+    }
+
     /**
      * Search country from database base on some specific constraints
      *
@@ -151,7 +169,7 @@ class AddCategoryController extends Controller
     }
     private function validateInput($request) {
         $this->validate($request, [
-        'name' => 'required|max:60|unique:addcategory'
+        'name' => 'required|max:60|unique:category'
      
     ]);
     }

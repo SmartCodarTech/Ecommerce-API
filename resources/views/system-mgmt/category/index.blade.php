@@ -6,13 +6,24 @@
   <div class="box-header">
     <div class="row">
         <div class="col-sm-8">
-          <h3 class="box-title">List of Category of Courses</h3>
+          <h3 class="box-title">Categories of Food Stuffs</h3>
         </div>
         <div class="col-sm-4">
-          <a class="btn btn-primary" href="{{ route('category.create') }}">Add new Catgory of Courses</a>
+          <a class="btn btn-primary" href="{{ route('category.create') }}">Add Product new Catgory </a>
         </div>
     </div>
   </div>
+   @if ($message = Session::get('success'))
+
+    <div class="alert alert-success alert-block">
+
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+
+        <strong>{{ $message }}</strong>
+
+   </div>
+
+@endif
   <!-- /.box-header -->
   <div class="box-body">
       <div class="row">
@@ -33,7 +44,9 @@
           <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
               <tr role="row">
-                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Category Name</th>
+                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Category Picture</th>
+                 <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Category Name</th>
+                  <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Date Created</th>
                 
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
@@ -41,7 +54,9 @@
             <tbody>
             @foreach ($categorys as $category)
                 <tr role="row" class="odd">
+                  <td><img src="../{{$category->picture }}" width="50px" height="50px"/></td>
                   <td>{{ $category->name}}</td>
+                  <td>{{ $category->created_at}}</td>
                    
                   <td>
                     <form class="row" method="POST" action="{{ route('category.destroy', ['id' => $category->id]) }}" onsubmit = "return confirm('Are you sure?')">
@@ -60,9 +75,10 @@
             </tbody>
             <tfoot>
              <tr role="row">
-                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Category Name</th>
+                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Category Picture</th>
                 
-               
+                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Category Name</th>
+                 <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="division: activate to sort column ascending">Date Created</th>
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>            </tfoot>
           </table>

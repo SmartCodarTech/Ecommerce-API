@@ -51,7 +51,7 @@
            
           </ul>
         </li>
-        <!--li><a href="{{ route('mail-management.index')}}"><i class="fa fa-envelope"></i> <span>Mails</span></a></li-->
+      
         <li><a href="{{ route('user-management.index') }}"><i class="fa fa-cogs"></i> <span>Update Login details</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

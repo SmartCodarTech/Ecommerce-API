@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Add new Categories Course</div>
+                <div class="panel-heading">Add new Categories</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('category.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ route('category.store') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -21,6 +21,12 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar" class="col-md-4 control-label" >Picture</label>
+                            <div class="col-md-6">
+                                <input type="file" id="picture" name="picture" required >
                             </div>
                         </div>
                        <div class="row no-print">
